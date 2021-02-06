@@ -31,8 +31,8 @@ namespace ConsoleUI
             Console.WriteLine($"{carById.CarId}\t{colorManager.GetById(carById.ColorId).ColorName}\t\t{brandManager.GetById(carById.BrandId).BrandName}\t\t{carById.ModelYear}\t\t{carById.DailyPrice}\t\t{carById.Description}");
 
 
-            Console.WriteLine("\n\n--------Günlük fiyat aralığı 100 ile 165 olan arabalar-------- \nId\tColor Name\tBrand Name\tModel Year\tDaily Price\tDescription");
-            foreach (var car in carManager.GetByDailyPrice(100, 165))
+            Console.WriteLine("\n\n--------Günlük fiyat aralığı 100 ile 250 olan arabalar-------- \nId\tColor Name\tBrand Name\tModel Year\tDaily Price\tDescription");
+            foreach (var car in carManager.GetByDailyPrice(100, 250))
             {
                 Console.WriteLine($"{car.CarId}\t{colorManager.GetById(car.ColorId).ColorName}\t\t{brandManager.GetById(car.BrandId).BrandName}\t\t{car.ModelYear}\t\t{car.DailyPrice}\t\t{car.Description}");
             }
@@ -42,7 +42,7 @@ namespace ConsoleUI
             carManager.Add(new Car { BrandId = 1, ColorId = 2, DailyPrice = -150, ModelYear = "2008", Description = "Güzel araba" });
             brandManager.Add(new Brand { BrandName = "z" });
 
-
+            
 
 
 
