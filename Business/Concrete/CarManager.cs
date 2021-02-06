@@ -10,23 +10,76 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
+
         public CarManager(ICarDal carDal)
         {
             _carDal = carDal;
         }
-        public Car GetById(int id) => _carDal.GetById(id);
-        public void Add(Car car) => _carDal.Add(car);
 
+        public void Add(Car car)
+        {
+            if (car.DailyPrice > 0)
+            {
+                _carDal.Add(car);
+                Console.WriteLine("Araba başarıyla eklendi.");
+            }
+            else
+            {
+                Console.WriteLine($"{car.DailyPrice} geçersiz değer. Lütfen günlük fiyat kısmını 0'dan büyük giriniz. ");
+            }
+        }
 
-        public void Delete(int carId)=> _carDal.Delete(carId);
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+            Console.WriteLine("Araba başarıyla silindi.");
 
+        }
 
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
         }
 
-        public void Update(Car car) => _carDal.Update(car);
-        
+        public List<Car> GetAllByBrandId(int id)
+        {
+            return _carDal.GetAll(c => c.BrandId == id);
+        }
+
+        public List<Car> GetAllByColorId(int id)
+        {
+            return _carDal.GetAll(c => c.ColorId == id);
+
+        }
+
+        public List<Car> GetByDailyPrice(decimal min, decimal max)
+        {
+            return _carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max);
+
+        }
+
+        public Car GetById(int id)
+        {
+            return _carDal.Get(c => c.CarId == id);
+        }
+
+        public List<Car> GetByModelYear(string year)
+        {
+            return _carDal.GetAll(c => c.ModelYear.Contains(year) == true);
+        }
+
+        public void Update(Car car)
+        {
+            if (car.DailyPrice > 0)
+            {
+                _carDal.Update(car);
+                Console.WriteLine("Araba başarıyla güncellendi.");
+            }
+            else
+            {
+                Console.WriteLine($"{car.DailyPrice} geçersiz değer. Lütfen günlük fiyat kısmını 0'dan büyük giriniz");
+            }
+
+        }
     }
 }
