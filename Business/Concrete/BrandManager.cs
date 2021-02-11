@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,48 +18,50 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-        public void Add(Brand brand)
+        public IResult Add(Brand brand)
         {
-            if (brand.BrandName.Length > 2)
+            if (brand.BrandName.Length < 2)
             {
-                _brandDal.Add(brand);
-                Console.WriteLine("Marka başarıyla eklendi.");
+                
+                return new ErrorResult(Messages.BrandNameInvalid);
             }
-            else
-            {
-                Console.WriteLine($"{brand.BrandName} geçersiz marka. Lütfen marka isminin uzunluğunu 2 karakterden fazla giriniz.");
-            }
+            _brandDal.Add(brand);
+
+            return new SuccessResult(Messages.BrandAdded);
         }
 
-        public void Delete(Brand brand)
+        public IResult Delete(Brand brand)
         {
+            
             _brandDal.Delete(brand);
-            Console.WriteLine("Marka başarıyla silindi.");
+            return new SuccessResult(Messages.BrandDeleted);
 
         }
 
-        public List<Brand> GetAll()
+        public IDataResult<List<Brand>> GetAll()
         {
-            return _brandDal.GetAll();
-        }
-
-        public Brand GetById(int id)
-        {
-            return _brandDal.Get(c => c.BrandId == id);
-        }
-
-        public void Update(Brand brand)
-        {
-            if (brand.BrandName.Length >= 2)
+            if (DateTime.Now.Hour == 22)
             {
-                _brandDal.Update(brand);
-                Console.WriteLine("Marka başarıyla Güncellendi.");
+                return new ErrorDataResult<List<Brand>>(Messages.MaintenanceTime);
             }
-            else
-            {
-                Console.WriteLine($"{brand.BrandName} geçersiz marka. Lütfen marka isminin uzunluğunu 1 karakterden fazla giriniz.");
-            }
+            return new SuccessDataResult<List<Brand>> (_brandDal.GetAll());
+        }
 
+        public IDataResult<Brand> GetById(int id)
+        {
+            return new SuccessDataResult<Brand> (_brandDal.Get(c => c.BrandId == id));
+        }
+
+        public IResult Update(Brand brand)
+        {
+            if (brand.BrandName.Length < 2)
+            {
+                return new ErrorResult(Messages.BrandNameInvalid);
+            }
+            
+            _brandDal.Update(brand);
+
+            return new SuccessResult(Messages.BrandUpdated);
         }
     }
 }
