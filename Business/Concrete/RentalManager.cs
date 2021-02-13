@@ -25,10 +25,9 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.CarRented);
             }
-            else
-            {
+            
                 return new SuccessResult(Messages.RentalAdded);
-            }
+            
             
         }
 
