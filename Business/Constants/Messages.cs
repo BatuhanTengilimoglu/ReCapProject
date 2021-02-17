@@ -24,5 +24,17 @@ namespace Business.Constants
         public static string CarRented = "Kiralanmış arabayı ekleyemezsin";
         public static string RentalAdded = "Araba başırılı bir şekilde kiralıklara eklendi";
         public static string NoRentals= "Kiralık araba bulunmamaktadır";
+        internal static string CustomerAdded = "Müşteri başarılı bir şekilde eklendi";
+        internal static string CustomerIsAlreadyExisting = "Olan bir müşteriyi ekleyemezsin";
+        internal static string CustomerDeleted = "Müşteri başarılı bir şekilde silindi";
+        internal static string CustomersListedByCompanyName = "Müşteriler şirket isimlerine göre başırılı bir şekilde listelendi";
+        internal static string CustomerUpdated = "Müşteri başırılı bir şekilde güncellendi";
+        internal static string RentalDeleted = "Kiralık araba başırılı bir şekilde silindi";
+        internal static string RentalUpdated = "Kiralık araba başırılı bir şekilde güncellendi";
+        internal static string CarIsAlreadyOnRent = "Kiralanmış arabayı tekrar ekleyemezsin";
+        internal static string UserAdded = "Kullanıcı başırılı bir şekilde eklendi";
+        internal static string UserValuesCantBeNull = "Kullanıcı özellikleri boş bırakılmaz lütfen kontrol ediniz.";
+        internal static string UserDeleted = "Kullanıcı başırılı bir şekilde silindi";
+        internal static string UserUpdated = "Kullanıcı başırılı bir şekilde güncellendi";
     }
 }

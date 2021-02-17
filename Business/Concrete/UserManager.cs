@@ -18,10 +18,35 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        public IDataResult<List<User>> GetAllUsers()
+        public IResult Add(User user)
         {
-            
+            if (user.FirstName == null || user.LastName == null || user.Password == null || user.Email == null)
+            {
+                return new ErrorResult(Messages.UserValuesCantBeNull);
+            }
+            _userDal.Add(user);
+            return new SuccessResult(Messages.UserAdded);
+        }
+
+        public IResult Delete(User user)
+        {
+            _userDal.Delete(user);
+            return new SuccessResult(Messages.UserDeleted);
+        }
+
+        public IDataResult<List<User>> GetAll()
+        {
+            if (DateTime.Now.Hour == 23)
+            {
+                return new ErrorDataResult<List<User>>(Messages.MaintenanceTime);
+            }
             return new SuccessDataResult<List<User>>(_userDal.GetAll());
+        }
+
+        public IResult Update(User user)
+        {
+            _userDal.Update(user);
+            return new SuccessResult(Messages.UserUpdated);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace ConsoleUI
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
             var result = rentalManager.GetRentalDetails();
-            var result2 = rentalManager.GetAllRentals();
+            var result2 = rentalManager.GetAll();
 
             Console.WriteLine("**********Kiralanmış araba eklemeyi dene*********\n");
             Console.WriteLine(rentalManager.Add(new Rental() { CarId = 1, CustomerId = 3, RentDate = DateTime.Now }).Message);
@@ -49,10 +49,10 @@ namespace ConsoleUI
             if (result.Success)
             {
                 Console.WriteLine("\n**********Kiralık arabaları detaylarıyla listele**********\n");
-                Console.WriteLine("ID\tCAR ID\tCUSTOMER ID\t\tRENT DATE\tRETURN DATE");
+                Console.WriteLine("ID\tCAR ID\tUSERNAME\t\tRENT DATE\tRETURN DATE");
                 foreach (var rental in result.Data)
                 {
-                    Console.WriteLine($"{rental.Id}\t{rental.CarId}\t{rental.UserName}\t{rental.CompanyName}\t{rental.RentDate}\t{rental.ReturnDate}");
+                    Console.WriteLine($"{rental.Id}\t{rental.CarId}\t{rental.UserName}\t{rental.RentDate}\t{rental.ReturnDate}");
                 }
             }
 

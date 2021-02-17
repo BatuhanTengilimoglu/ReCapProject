@@ -25,21 +25,41 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.CarRented);
             }
-            
-                return new SuccessResult(Messages.RentalAdded);
-            
+            _rentalDal.Add(rental);
+            return new SuccessResult(Messages.RentalAdded);
             
         }
 
-        public IDataResult<List<Rental>> GetAllRentals()
+        public IResult Delete(Rental rental)
         {
+            
+            _rentalDal.Delete(rental);
+            return new SuccessResult(Messages.RentalDeleted);
+        }
+
+        public IDataResult<List<Rental>> GetAll()
+        {
+            if (DateTime.Now.Hour == 23)
+            {
+                return new ErrorDataResult<List<Rental>>(Messages.MaintenanceTime);
+            }
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
         }
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
-
+            
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails());
+        }
+
+        public IResult Update(Rental rental)
+        {
+            if (rental.ReturnDate==null)
+            {
+                return new ErrorResult(Messages.CarIsAlreadyOnRent);
+            }
+            _rentalDal.Update(rental);
+            return new SuccessResult(Messages.RentalUpdated);
         }
     }
 }
