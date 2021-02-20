@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
-using Core.Utilities;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -21,12 +21,7 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
-            if (car.DailyPrice < 0)
-            {
-                
-                return new ErrorResult(Messages.CarPriceInvalid);
-
-            }
+            
             _carDal.Add(car);
 
             return new SuccessResult(Messages.CarAdded);
@@ -44,10 +39,10 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            if (DateTime.Now.Hour==22)
-            {
-                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
-            }
+            //if (DateTime.Now.Hour==22)
+            //{
+            //    return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+            //}
             return new SuccessDataResult<List<Car>> (_carDal.GetAll(),Messages.CarsListed);
         }
 
@@ -85,10 +80,6 @@ namespace Business.Concrete
 
         public IResult Update(Car car)
         {
-            if (car.DailyPrice < 0)
-            {
-                return new ErrorResult(Messages.CarPriceInvalid);
-            }
             
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);

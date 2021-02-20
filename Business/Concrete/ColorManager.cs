@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
-using Core.Utilities;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -20,10 +20,7 @@ namespace Business.Concrete
 
         public IResult Add(Color color)
         {
-            if (color.ColorName.Length < 2 )
-            {
-                return new ErrorResult(Messages.ColorNameInvalid);
-            }
+           
             _colorDal.Add(color);
 
             return new SuccessResult(Messages.ColorAdded);
@@ -38,10 +35,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Color>> GetAll()
         {
-            if (DateTime.Now.Hour==22)
-            {
-                return new ErrorDataResult<List<Color>>(Messages.MaintenanceTime);
-            }
+            
             return new SuccessDataResult<List<Color>> (_colorDal.GetAll());
 
         }
@@ -53,10 +47,7 @@ namespace Business.Concrete
 
         public IResult Update(Color color)
         {
-            if (color.ColorName.Length < 2)
-            {
-                return new ErrorResult(Messages.ColorNameInvalid);
-            }
+           
             _colorDal.Update(color);
             return new SuccessResult(Messages.ColorUpdated);
         }

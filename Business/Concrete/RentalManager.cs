@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
-using Core.Utilities;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -21,10 +21,7 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
-            if (rental.ReturnDate==null )
-            {
-                return new ErrorResult(Messages.CarRented);
-            }
+            
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
             
@@ -39,10 +36,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Rental>> GetAll()
         {
-            if (DateTime.Now.Hour == 23)
-            {
-                return new ErrorDataResult<List<Rental>>(Messages.MaintenanceTime);
-            }
+            
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
         }
 
@@ -54,10 +48,7 @@ namespace Business.Concrete
 
         public IResult Update(Rental rental)
         {
-            if (rental.ReturnDate==null)
-            {
-                return new ErrorResult(Messages.CarIsAlreadyOnRent);
-            }
+           
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.RentalUpdated);
         }
