@@ -23,11 +23,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
-            if (brand.BrandName.Length < 2)
-            {
-                
-                return new ErrorResult(Messages.BrandNameInvalid);
-            }
+            
             _brandDal.Add(brand);
 
             return new SuccessResult(Messages.BrandAdded);

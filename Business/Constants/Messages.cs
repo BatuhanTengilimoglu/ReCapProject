@@ -24,17 +24,25 @@ namespace Business.Constants
         public static string CarRented = "Kiralanmış arabayı ekleyemezsin";
         public static string RentalAdded = "Araba başırılı bir şekilde kiralıklara eklendi";
         public static string NoRentals= "Kiralık araba bulunmamaktadır";
-        internal static string CustomerAdded = "Müşteri başarılı bir şekilde eklendi";
-        internal static string CustomerIsAlreadyExisting = "Olan bir müşteriyi ekleyemezsin";
-        internal static string CustomerDeleted = "Müşteri başarılı bir şekilde silindi";
-        internal static string CustomersListedByCompanyName = "Müşteriler şirket isimlerine göre başırılı bir şekilde listelendi";
-        internal static string CustomerUpdated = "Müşteri başırılı bir şekilde güncellendi";
-        internal static string RentalDeleted = "Kiralık araba başırılı bir şekilde silindi";
-        internal static string RentalUpdated = "Kiralık araba başırılı bir şekilde güncellendi";
-        internal static string CarIsAlreadyOnRent = "Kiralanmış arabayı tekrar ekleyemezsin";
-        internal static string UserAdded = "Kullanıcı başırılı bir şekilde eklendi";
-        internal static string UserValuesCantBeNull = "Kullanıcı özellikleri boş bırakılmaz lütfen kontrol ediniz.";
-        internal static string UserDeleted = "Kullanıcı başırılı bir şekilde silindi";
-        internal static string UserUpdated = "Kullanıcı başırılı bir şekilde güncellendi";
+        public static string CustomerAdded = "Müşteri başarılı bir şekilde eklendi";
+        public static string CustomerIsAlreadyExisting = "Olan bir müşteriyi ekleyemezsin";
+        public static string CustomerDeleted = "Müşteri başarılı bir şekilde silindi";
+        public static string CustomersListedByCompanyName = "Müşteriler şirket isimlerine göre başırılı bir şekilde listelendi";
+        public static string CustomerUpdated = "Müşteri başırılı bir şekilde güncellendi";
+        public static string RentalDeleted = "Kiralık araba başırılı bir şekilde silindi";
+        public static string RentalUpdated = "Kiralık araba başırılı bir şekilde güncellendi";
+        public static string CarIsAlreadyOnRent = "Kiralanmış arabayı tekrar ekleyemezsin";
+        public static string UserAdded = "Kullanıcı başırılı bir şekilde eklendi";
+        public static string UserValuesCantBeNull = "Kullanıcı özellikleri boş bırakılmaz lütfen kontrol ediniz.";
+        public static string UserDeleted = "Kullanıcı başırılı bir şekilde silindi";
+        public static string UserUpdated = "Kullanıcı başırılı bir şekilde güncellendi";
+        public static string ImageAdded = "Fotoğraf başarılı bir şekilde eklendi";
+        public static string ImageDeleted = "Fotoğraf başarılı bir şekilde silindi";
+        public static string ImageUpdated = "Fotoğraf başarılı bir şekilde güncellendi";
+        public static string ImageLimitReached = "Maksimum fotoğraf sayısına ulaşıldı (5)";
+        public static string ImageNotFound = "Fotoğraf bulunamadı";
+        public static string ImageDoesNotFound = "Fotoğraf bulunamadı";
+        public static string ImageFormatIsNotCorrect = "Kullanılan format yanlış";
+        
     }
 }
