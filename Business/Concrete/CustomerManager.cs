@@ -1,13 +1,10 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
-using Business.ValidationRules.FluentValidation;
-using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -20,7 +17,7 @@ namespace Business.Concrete
             _customerDal = customerDal;
         }
 
-        [ValidationAspect(typeof(CustomerValidator))]
+        
         public IResult Add(Customer customer)
         {
             if (customer.UserId == (_customerDal as Customer).UserId || customer.Id == (_customerDal as Customer).Id)
@@ -32,6 +29,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CustomerAdded);
         }
 
+        [SecuredOperation("customer.delete,moderator,admin")]
         public IResult Delete(Customer customer)
         {
             _customerDal.Delete(customer);
@@ -39,10 +37,17 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CustomerDeleted);
         }
 
+        [SecuredOperation("customer.get,moderator,admin")]
         public IDataResult<List<Customer>> GetAll()
         {
             
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll());
+        }
+
+        [SecuredOperation("customer.get,moderator,admin")]
+        public IDataResult<Customer> GetById(int id)
+        {
+            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == id));
         }
 
         public IDataResult<Customer> GetByCompanyName(string companyName)
@@ -51,6 +56,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Customer>(_customerDal.Get(p => p.CompanyName.Contains(companyName)), Messages.CustomersListedByCompanyName);
         }
 
+        [SecuredOperation("customer.update,moderator,admin")]
         public IResult Update(Customer customer)
         {
             

@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +8,8 @@ namespace Business.Constants
 {
     public static class Messages
     {
+        public static string creditCardAdded = "Kredi kartı başarıyla eklendi";
+        public static string creditCardDeleted = "Kredi kartı başarıyla silindi";
         public static string MaintenanceTime = "Sistem bakımda";
         public static string CarAdded = "Araba başarılı bir şekilde eklendi";
         public static string CarPriceInvalid = $"Lütfen günlük fiyat kısmını 0'dan büyük giriniz. ";
@@ -23,7 +26,7 @@ namespace Business.Constants
         public static string ColorUpdated = "Renk başarılı bir şekilde güncellendi";
         public static string CarRented = "Kiralanmış arabayı ekleyemezsin";
         public static string RentalAdded = "Araba başırılı bir şekilde kiralıklara eklendi";
-        public static string NoRentals= "Kiralık araba bulunmamaktadır";
+        public static string NoRentals = "Kiralık araba bulunmamaktadır";
         public static string CustomerAdded = "Müşteri başarılı bir şekilde eklendi";
         public static string CustomerIsAlreadyExisting = "Olan bir müşteriyi ekleyemezsin";
         public static string CustomerDeleted = "Müşteri başarılı bir şekilde silindi";
@@ -43,6 +46,28 @@ namespace Business.Constants
         public static string ImageNotFound = "Fotoğraf bulunamadı";
         public static string ImageDoesNotFound = "Fotoğraf bulunamadı";
         public static string ImageFormatIsNotCorrect = "Kullanılan format yanlış";
-        
+        public static string UserRegistered = "Kullanıcı kayıt başarılı";
+        public static string SuccessfulLogin = "Giriş başarılı";
+        public static string UserAlreadyExists = "Böyle bir kullanıcı zaten var";
+        public static string AccessTokenCreated = "Token yaratıldı";
+        public static string AuthorizationDenied = "Yetkiniz yok";
+        public static string FindeksAdded = "Findeks başarıyla eklendi";
+        public static string FindeksUpdated = "Findeks başarıyla güncellendi";
+        public static string FindeksDeleted = "Findeks başarıyla silindi";
+        public static string OperationClaimAdded = "OperationClaim başarıyla eklendi";
+        public static string OperationClaimUpdated = "OperationClaim başarıyla güncellendi";
+        public static string OperationClaimDeleted = "OperationClaim başarıyla silindi";
+        public static string UserOperationClaimAdded = "UserOperationClaim başarıyla eklendi";
+        public static string UserOperationClaimUpdated = "UserOperationClaim başarıyla güncellendi";
+        public static string UserOperationClaimDeleted = "UserOperationClaim başarıyla silindi";
+        public static string PaymentFailed = "Ödeme başarısız ";
+        public static string PaymentSuccessful = "Ödeme başarılı";
+        public static string RentalUndeliveredCar = "Araç hala teslim edilmedi";
+        public static string RentalNotAvailable = "Araç yok";
+        public static string FindeksNotFound = "Findeks bulunamadı";
+        public static string FindeksNotEnoughForCar = "Findeks araba için yetersiz";
+        public static string UserDetailsUpdated = "Kullanıcı detayları güncellendi";
+        public static string PasswordError = "Şifre yanlış";
+        public static string UserNotFound = "Kullanıcı bulunamadı";
     }
 }

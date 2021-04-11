@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,5 +21,10 @@ namespace DataAccess.Concrete.EntityFramework.CarDbContext
         public DbSet<Customer> Customers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<CarImage> CarImages { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<CreditCard> CreditCards { get; set; }
+        public DbSet<Findeks> Findeks { get; set; }
+
     }
 }

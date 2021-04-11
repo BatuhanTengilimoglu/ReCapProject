@@ -1,13 +1,10 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
-using Business.ValidationRules.FluentValidation;
-using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -20,7 +17,7 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-        [ValidationAspect(typeof(BrandValidator))]
+        [SecuredOperation("brand.add,moderator,admin")]
         public IResult Add(Brand brand)
         {
             
@@ -29,6 +26,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.BrandAdded);
         }
 
+        [SecuredOperation("brand.delete,moderator,admin")]
         public IResult Delete(Brand brand)
         {
             
@@ -48,6 +46,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Brand> (_brandDal.Get(c => c.BrandId == id));
         }
 
+        [SecuredOperation("brand.update,moderator,admin")]
         public IResult Update(Brand brand)
         {
             
